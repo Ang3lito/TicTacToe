@@ -1,0 +1,174 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 95%;
+}
+
+body {
+    margin-bottom: 60px;
+    transition: background-color 0.3s, color 0.3s;
+    min-height: auto; /* Remove forced height */
+    margin-bottom: 30px;
+}
+
+.text-primary {
+    font-weight: bold;
+}
+
+.big-darkmode-btn {
+    width: 70px; /* Make button wider */
+    height: 30px; /* Make button taller */
+    padding: 15px; /* Increase inner spacing */
+    font-size: 2rem; /* Increase text/icon size */
+    border-radius: 20px; /* Keep a rounded shape */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .big-darkmode-btn i {
+        font-size: 2.5rem; /* Increase icon size */
+    }
+
+
+.score-box {
+    padding: 18px;
+    border-radius: 10px;
+    min-width: 120px;
+    text-align: center;
+}
+
+    .score-box p {
+        font-size: 1.2rem; /* Increase the number if needed */
+        font-weight: bold;
+    }
+
+
+/* Game Board Styles */
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 15px; /* Slightly increase the gap for spacing */
+    margin: 0 auto;
+    max-width: 390px; /* Increase from 300px */
+}
+
+
+.game-square {
+    aspect-ratio: 1;
+    background-color: white;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+    .game-square:hover {
+        background-color: #f8f9fa;
+    }
+
+    .game-square[data-winning="true"] {
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+    }
+
+.game-mark {
+    font-size: 3rem;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.game-square[data-mark="X"] .game-mark {
+    color: #0d6efd;
+}
+
+.game-square[data-mark="O"] .game-mark {
+    color: #dc3545;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.dark-mode .navbar {
+    background-color: #1e1e1e !important;
+}
+
+.dark-mode .navbar-brand,
+.dark-mode .navbar-nav .nav-link {
+    color: #ffffff !important;
+}
+
+.dark-mode .card {
+    background-color: #1e1e1e;
+    border-color: #2d2d2d;
+}
+
+.dark-mode .btn-outline-secondary {
+    color: #ffffff;
+    border-color: #ffffff;
+}
+
+    .dark-mode .btn-outline-secondary:hover {
+        color: #121212;
+        background-color: #ffffff;
+    }
+
+.dark-mode .btn-outline-dark {
+    color: #ffffff;
+    border-color: #ffffff;
+}
+
+    .dark-mode .btn-outline-dark:hover {
+        background-color: #ffffff;
+        color: #121212;
+    }
+
+.dark-mode .game-square {
+    background-color: #2d2d2d;
+    border-color: #3d3d3d;
+}
+
+    .dark-mode .game-square:hover {
+        background-color: #3d3d3d;
+    }
+
+    .dark-mode .game-square[data-winning="true"] {
+        background-color: #1b5e20;
+        border-color: #2e7d32;
+    }
+
+.dark-mode .text-dark {
+    color: white !important;
+}
+
+.dark-mode .bg-primary {
+    background-color: #1565c0 !important;
+}
+
+.dark-mode .bg-warning {
+    background-color: #f57f17 !important;
+}
+
+.dark-mode .bg-danger {
+    background-color: #b71c1c !important;
+}
+

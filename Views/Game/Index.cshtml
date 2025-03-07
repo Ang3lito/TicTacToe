@@ -1,0 +1,76 @@
+﻿@model TicTacToe.Models.GameState
+@{
+    ViewData["Title"] = "Tic-Tac-Toe";
+}
+
+<div class="container">
+    <h1 class="text-center my-4">Tic-Tac-Toe</h1>
+
+    <div class="d-flex justify-content-center gap-2 mb-3">
+        <button type="button" class="btn btn-outline-dark" id="singlePlayerBtn">
+            <i class="bi bi-gear"></i> vs AI
+        </button>
+        <button type="button" class="btn btn-outline-dark" id="multiPlayerBtn">
+            <i class="bi bi-person"></i> vs Player
+        </button>
+    </div>
+    <div class="text-center mb-3">
+        <button class="btn btn-outline-dark btn-lg" id="resetBtn">
+            <i class="bi bi-arrow-repeat"></i> Reset Game
+        </button>
+    </div>
+
+    <div class="d-flex justify-content-center gap-3 mb-3">
+        <div class="score-box bg-primary bg-opacity-10">
+            <p class="mb-1">X (Player)</p>
+            <h3 id="scoreX" class="text-black">@Model.Scores.X</h3>
+        </div>
+        <div class="score-box bg-warning bg-opacity-10">
+            <p class="mb-1">Ties</p>
+            <h3 id="scoreTies" class="text-black">@Model.Scores.Ties</h3>
+        </div>
+        <div class="score-box bg-danger bg-opacity-10">
+            <p class="mb-1">O <span id="aiLabel">@(Model.GameMode == "single" ? "(AI)" : "")</span></p>
+            <h3 id="scoreO" class="text-black">@Model.Scores.O</h3>
+        </div>
+    </div>
+    <div class="game-board">
+        @for (int i = 0; i < 9; i++)
+        {
+            <div class="game-square @(!string.IsNullOrEmpty(Model.Board[i]) ? "disabled" : "")"
+                 data-index="@i"
+                 data-winning="@(Model.WinningLine?.Contains(i) ?? false)">
+                <span class="game-mark">@Model.Board[i]</span>
+            </div>
+        }
+    </div>
+
+    <div class="text-center mt-5">
+        <h4 id="gameStatus">
+            @if (Model.GameStatus == "playing")
+            {
+                <span>@(Model.XIsNext ? "X" : "O")'s turn</span>
+            }
+            else if (Model.GameStatus == "won")
+            {
+                <span class="text-success">@Model.Winner wins!</span>
+            }
+            else
+            {
+                <span class="text-warning">Game ended in a draw!</span>
+            }
+        </h4>
+    </div>
+
+</div>
+
+@Html.AntiForgeryToken()
+<input type="hidden" id="gameId" value="@Model.GameId" />
+<input type="hidden" id="gameMode" value="@Model.GameMode" />
+<input type="hidden" id="gameStatus" value="@Model.GameStatus" />
+<input type="hidden" id="xIsNext" value="@Model.XIsNext.ToString().ToLower()" />
+
+@section Scripts {
+    <script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
+    <script src="~/js/game.js"></script>
+}
